@@ -1,5 +1,5 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class JvlUsuario  implements java.io.Serializable {
 
 
-     private Integer jvlIdUsuario;
+     private int jvlIdUsuario;
      private String jvlNome;
      private String jvlApelido;
      private String jvlCpf;
@@ -34,7 +34,6 @@ public class JvlUsuario  implements java.io.Serializable {
      private String jvlSenha;
      private int jvlNivel;
      private String jvlAtivo;
-     private Set emdVendas = new HashSet(0);
 
     public JvlUsuario() {
     }
@@ -48,7 +47,7 @@ public class JvlUsuario  implements java.io.Serializable {
         this.jvlNivel = jvlNivel;
         this.jvlAtivo = jvlAtivo;
     }
-    public JvlUsuario(String jvlNome, String jvlApelido, String jvlCpf, Date jvlDataNascimento, String jvlSenha, int jvlNivel, String jvlAtivo, Set emdVendas) {
+    public JvlUsuario(String jvlNome, String jvlApelido, String jvlCpf, Date jvlDataNascimento, String jvlSenha, int jvlNivel, String jvlAtivo) {
        this.jvlNome = jvlNome;
        this.jvlApelido = jvlApelido;
        this.jvlCpf = jvlCpf;
@@ -56,7 +55,6 @@ public class JvlUsuario  implements java.io.Serializable {
        this.jvlSenha = jvlSenha;
        this.jvlNivel = jvlNivel;
        this.jvlAtivo = jvlAtivo;
-       this.emdVendas = emdVendas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -139,15 +137,6 @@ public class JvlUsuario  implements java.io.Serializable {
     
     public void setJvlAtivo(String jvlAtivo) {
         this.jvlAtivo = jvlAtivo;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlUsuario")
-    public Set getEmdVendas() {
-        return this.emdVendas;
-    }
-    
-    public void setEmdVendas(Set emdVendas) {
-        this.emdVendas = emdVendas;
     }
 
 

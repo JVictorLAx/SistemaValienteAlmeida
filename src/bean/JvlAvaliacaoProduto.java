@@ -1,5 +1,5 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,7 +34,6 @@ public class JvlAvaliacaoProduto  implements java.io.Serializable {
      private String recomendado;
      private String tempoDeUso;
      private String informacoesAdicionais;
-     private Set emdVendas = new HashSet(0);
 
     public JvlAvaliacaoProduto() {
     }
@@ -48,7 +47,7 @@ public class JvlAvaliacaoProduto  implements java.io.Serializable {
         this.tempoDeUso = tempoDeUso;
         this.informacoesAdicionais = informacoesAdicionais;
     }
-    public JvlAvaliacaoProduto(int jvlIdAvaliacaoProduto, EmdCliente emdCliente, String jvlPontuacao, String jvlComentario, Date jvlDataAvaliacao, String recomendado, String tempoDeUso, String informacoesAdicionais, Set emdVendas) {
+    public JvlAvaliacaoProduto(int jvlIdAvaliacaoProduto, EmdCliente emdCliente, String jvlPontuacao, String jvlComentario, Date jvlDataAvaliacao, String recomendado, String tempoDeUso, String informacoesAdicionais) {
        this.jvlIdAvaliacaoProduto = jvlIdAvaliacaoProduto;
        this.emdCliente = emdCliente;
        this.jvlPontuacao = jvlPontuacao;
@@ -57,7 +56,6 @@ public class JvlAvaliacaoProduto  implements java.io.Serializable {
        this.recomendado = recomendado;
        this.tempoDeUso = tempoDeUso;
        this.informacoesAdicionais = informacoesAdicionais;
-       this.emdVendas = emdVendas;
     }
    
      @Id 
@@ -141,17 +139,6 @@ public class JvlAvaliacaoProduto  implements java.io.Serializable {
     public void setInformacoesAdicionais(String informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlAvaliacaoProduto")
-    public Set getEmdVendas() {
-        return this.emdVendas;
-    }
-    
-    public void setEmdVendas(Set emdVendas) {
-        this.emdVendas = emdVendas;
-    }
-
-
 
 
 }

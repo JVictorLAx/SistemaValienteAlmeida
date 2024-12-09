@@ -1,5 +1,5 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,8 +31,7 @@ public class EmdProduto  implements java.io.Serializable {
      private String emdCor;
      private String emdModelo;
      private String emdImagemPrincipal;
-     private Set emdVendaProdutos = new HashSet(0);
-     private Set jvlCompraProdutos = new HashSet(0);
+    
 
     public EmdProduto() {
     }
@@ -47,7 +46,7 @@ public class EmdProduto  implements java.io.Serializable {
         this.emdModelo = emdModelo;
         this.emdImagemPrincipal = emdImagemPrincipal;
     }
-    public EmdProduto(int emdIdProduto, EmdCategoria emdCategoria, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal, Set emdVendaProdutos, Set jvlCompraProdutos) {
+    public EmdProduto(int emdIdProduto, EmdCategoria emdCategoria, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal) {
        this.emdIdProduto = emdIdProduto;
        this.emdCategoria = emdCategoria;
        this.emdNome = emdNome;
@@ -56,9 +55,7 @@ public class EmdProduto  implements java.io.Serializable {
        this.emdCor = emdCor;
        this.emdModelo = emdModelo;
        this.emdImagemPrincipal = emdImagemPrincipal;
-       this.emdVendaProdutos = emdVendaProdutos;
-       this.jvlCompraProdutos = jvlCompraProdutos;
-    }
+           }
    
      @Id 
 
@@ -142,23 +139,6 @@ public class EmdProduto  implements java.io.Serializable {
         this.emdImagemPrincipal = emdImagemPrincipal;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdProduto")
-    public Set getEmdVendaProdutos() {
-        return this.emdVendaProdutos;
-    }
-    
-    public void setEmdVendaProdutos(Set emdVendaProdutos) {
-        this.emdVendaProdutos = emdVendaProdutos;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdProduto")
-    public Set getJvlCompraProdutos() {
-        return this.jvlCompraProdutos;
-    }
-    
-    public void setJvlCompraProdutos(Set jvlCompraProdutos) {
-        this.jvlCompraProdutos = jvlCompraProdutos;
-    }
 
 
 

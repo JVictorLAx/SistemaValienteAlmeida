@@ -1,5 +1,5 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class EmdCliente  implements java.io.Serializable {
 
 
-     private Integer emdIdCliente;
+     private int emdIdCliente;
      private String emdNome;
      private String emdSobrenome;
      private String emdEmail;
@@ -41,8 +41,7 @@ public class EmdCliente  implements java.io.Serializable {
      private String emdProfissao;
      private String emdModeloCarroP;
      private String emdMarcaCarroP;
-     private Set jvlCompras = new HashSet(0);
-     private Set jvlAvaliacaoProdutos = new HashSet(0);
+     
 
     public EmdCliente() {
     }
@@ -58,7 +57,7 @@ public class EmdCliente  implements java.io.Serializable {
         this.emdCep = emdCep;
         this.emdPais = emdPais;
     }
-    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdEndereco, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdModeloCarroP, String emdMarcaCarroP, Set jvlCompras, Set jvlAvaliacaoProdutos) {
+    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdEndereco, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdModeloCarroP, String emdMarcaCarroP) {
        this.emdNome = emdNome;
        this.emdSobrenome = emdSobrenome;
        this.emdEmail = emdEmail;
@@ -73,8 +72,7 @@ public class EmdCliente  implements java.io.Serializable {
        this.emdProfissao = emdProfissao;
        this.emdModeloCarroP = emdModeloCarroP;
        this.emdMarcaCarroP = emdMarcaCarroP;
-       this.jvlCompras = jvlCompras;
-       this.jvlAvaliacaoProdutos = jvlAvaliacaoProdutos;
+ 
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -227,24 +225,6 @@ public class EmdCliente  implements java.io.Serializable {
     
     public void setEmdMarcaCarroP(String emdMarcaCarroP) {
         this.emdMarcaCarroP = emdMarcaCarroP;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdCliente")
-    public Set getJvlCompras() {
-        return this.jvlCompras;
-    }
-    
-    public void setJvlCompras(Set jvlCompras) {
-        this.jvlCompras = jvlCompras;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdCliente")
-    public Set getJvlAvaliacaoProdutos() {
-        return this.jvlAvaliacaoProdutos;
-    }
-    
-    public void setJvlAvaliacaoProdutos(Set jvlAvaliacaoProdutos) {
-        this.jvlAvaliacaoProdutos = jvlAvaliacaoProdutos;
     }
 
 

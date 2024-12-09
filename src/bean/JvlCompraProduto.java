@@ -1,13 +1,10 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,36 +20,43 @@ import javax.persistence.Table;
 public class JvlCompraProduto  implements java.io.Serializable {
 
 
-     private Integer jvlIdCompraProduto;
+     private int jvlIdCompraProduto;
      private EmdProduto emdProduto;
      private JvlCompra jvlCompra;
      private int emdQuantidade;
-     private BigDecimal emdPrecoUnitario;
+     private double emdPrecoUnitario;
 
     public JvlCompraProduto() {
     }
 
-    public JvlCompraProduto(EmdProduto emdProduto, JvlCompra jvlCompra, int emdQuantidade, BigDecimal emdPrecoUnitario) {
+	
+    public JvlCompraProduto(int jvlIdCompraProduto, int emdQuantidade, double emdPrecoUnitario) {
+        this.jvlIdCompraProduto = jvlIdCompraProduto;
+        this.emdQuantidade = emdQuantidade;
+        this.emdPrecoUnitario = emdPrecoUnitario;
+    }
+    public JvlCompraProduto(int jvlIdCompraProduto, EmdProduto emdProduto, JvlCompra jvlCompra, int emdQuantidade, double emdPrecoUnitario) {
+       this.jvlIdCompraProduto = jvlIdCompraProduto;
        this.emdProduto = emdProduto;
        this.jvlCompra = jvlCompra;
        this.emdQuantidade = emdQuantidade;
        this.emdPrecoUnitario = emdPrecoUnitario;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="jvl_id_compra_produto", unique=true, nullable=false)
-    public Integer getJvlIdCompraProduto() {
+    public int getJvlIdCompraProduto() {
         return this.jvlIdCompraProduto;
     }
     
-    public void setJvlIdCompraProduto(Integer jvlIdCompraProduto) {
+    public void setJvlIdCompraProduto(int jvlIdCompraProduto) {
         this.jvlIdCompraProduto = jvlIdCompraProduto;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="produto_jvl_id_produto", nullable=false)
+    @JoinColumn(name="produto_jvl_id_produto")
     public EmdProduto getEmdProduto() {
         return this.emdProduto;
     }
@@ -62,7 +66,7 @@ public class JvlCompraProduto  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="compra_jvl_id_compra", nullable=false)
+    @JoinColumn(name="compra_jvl_id_compra")
     public JvlCompra getJvlCompra() {
         return this.jvlCompra;
     }
@@ -83,11 +87,11 @@ public class JvlCompraProduto  implements java.io.Serializable {
 
     
     @Column(name="emd_preco_unitario", nullable=false, precision=10)
-    public BigDecimal getEmdPrecoUnitario() {
+    public double getEmdPrecoUnitario() {
         return this.emdPrecoUnitario;
     }
     
-    public void setEmdPrecoUnitario(BigDecimal emdPrecoUnitario) {
+    public void setEmdPrecoUnitario(double emdPrecoUnitario) {
         this.emdPrecoUnitario = emdPrecoUnitario;
     }
 

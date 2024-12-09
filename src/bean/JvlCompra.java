@@ -1,16 +1,13 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,43 +26,36 @@ import javax.persistence.TemporalType;
 public class JvlCompra  implements java.io.Serializable {
 
 
-     private Integer jvlIdCompra;
+     private int jvlIdCompra;
      private EmdCliente emdCliente;
      private JvlFornecedor jvlFornecedor;
      private Date jvlDataCompra;
-     private BigDecimal jvlValorTotal;
+     private double jvlValorTotal;
      private String jvlStatusPagamento;
-     private Set jvlCompraProdutos = new HashSet(0);
 
     public JvlCompra() {
     }
 
 	
-    public JvlCompra(EmdCliente emdCliente, JvlFornecedor jvlFornecedor, Date jvlDataCompra, BigDecimal jvlValorTotal, String jvlStatusPagamento) {
+    public JvlCompra(int jvlIdCompra, EmdCliente emdCliente, JvlFornecedor jvlFornecedor, Date jvlDataCompra, double jvlValorTotal, String jvlStatusPagamento) {
+        this.jvlIdCompra = jvlIdCompra;
         this.emdCliente = emdCliente;
         this.jvlFornecedor = jvlFornecedor;
         this.jvlDataCompra = jvlDataCompra;
         this.jvlValorTotal = jvlValorTotal;
         this.jvlStatusPagamento = jvlStatusPagamento;
     }
-    public JvlCompra(EmdCliente emdCliente, JvlFornecedor jvlFornecedor, Date jvlDataCompra, BigDecimal jvlValorTotal, String jvlStatusPagamento, Set jvlCompraProdutos) {
-       this.emdCliente = emdCliente;
-       this.jvlFornecedor = jvlFornecedor;
-       this.jvlDataCompra = jvlDataCompra;
-       this.jvlValorTotal = jvlValorTotal;
-       this.jvlStatusPagamento = jvlStatusPagamento;
-       this.jvlCompraProdutos = jvlCompraProdutos;
-    }
+    
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="jvl_id_compra", unique=true, nullable=false)
-    public Integer getJvlIdCompra() {
+    public int getJvlIdCompra() {
         return this.jvlIdCompra;
     }
     
-    public void setJvlIdCompra(Integer jvlIdCompra) {
+    public void setJvlIdCompra(int jvlIdCompra) {
         this.jvlIdCompra = jvlIdCompra;
     }
 
@@ -101,11 +91,11 @@ public class JvlCompra  implements java.io.Serializable {
 
     
     @Column(name="jvl_valor_total", nullable=false, precision=10)
-    public BigDecimal getJvlValorTotal() {
+    public double getJvlValorTotal() {
         return this.jvlValorTotal;
     }
     
-    public void setJvlValorTotal(BigDecimal jvlValorTotal) {
+    public void setJvlValorTotal(double jvlValorTotal) {
         this.jvlValorTotal = jvlValorTotal;
     }
 
@@ -119,14 +109,7 @@ public class JvlCompra  implements java.io.Serializable {
         this.jvlStatusPagamento = jvlStatusPagamento;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlCompra")
-    public Set getJvlCompraProdutos() {
-        return this.jvlCompraProdutos;
-    }
-    
-    public void setJvlCompraProdutos(Set jvlCompraProdutos) {
-        this.jvlCompraProdutos = jvlCompraProdutos;
-    }
+
 
 
 

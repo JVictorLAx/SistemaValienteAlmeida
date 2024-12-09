@@ -1,8 +1,7 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -27,12 +26,12 @@ public class EmdVendaProduto  implements java.io.Serializable {
      private EmdProduto emdProduto;
      private EmdVenda emdVenda;
      private int emdQuantidade;
-     private BigDecimal emdValorUnitario;
+     private double emdValorUnitario;
 
     public EmdVendaProduto() {
     }
 
-    public EmdVendaProduto(EmdVendaProdutoId id, EmdProduto emdProduto, EmdVenda emdVenda, int emdQuantidade, BigDecimal emdValorUnitario) {
+    public EmdVendaProduto(EmdVendaProdutoId id, EmdProduto emdProduto, EmdVenda emdVenda, int emdQuantidade, double emdValorUnitario) {
        this.id = id;
        this.emdProduto = emdProduto;
        this.emdVenda = emdVenda;
@@ -86,11 +85,11 @@ public class EmdVendaProduto  implements java.io.Serializable {
 
     
     @Column(name="emd_valor_unitario", nullable=false, precision=10)
-    public BigDecimal getEmdValorUnitario() {
+    public double getEmdValorUnitario() {
         return this.emdValorUnitario;
     }
     
-    public void setEmdValorUnitario(BigDecimal emdValorUnitario) {
+    public void setEmdValorUnitario(double emdValorUnitario) {
         this.emdValorUnitario = emdValorUnitario;
     }
 

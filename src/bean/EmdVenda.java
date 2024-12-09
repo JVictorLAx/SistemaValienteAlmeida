@@ -1,5 +1,5 @@
 package bean;
-// Generated 07/12/2024 15:09:50 by Hibernate Tools 4.3.1
+// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -35,7 +35,6 @@ public class EmdVenda  implements java.io.Serializable {
      private String emdFormaPagamento;
      private String emdModelo;
      private String emdMarca;
-     private Set emdVendaProdutos = new HashSet(0);
 
     public EmdVenda() {
     }
@@ -52,18 +51,7 @@ public class EmdVenda  implements java.io.Serializable {
         this.emdModelo = emdModelo;
         this.emdMarca = emdMarca;
     }
-    public EmdVenda(int emdIdVenda, JvlAvaliacaoProduto jvlAvaliacaoProduto, JvlUsuario jvlUsuario, Date emdDataVenda, long emdPreco, String emdCorCarro, String emdFormaPagamento, String emdModelo, String emdMarca, Set emdVendaProdutos) {
-       this.emdIdVenda = emdIdVenda;
-       this.jvlAvaliacaoProduto = jvlAvaliacaoProduto;
-       this.jvlUsuario = jvlUsuario;
-       this.emdDataVenda = emdDataVenda;
-       this.emdPreco = emdPreco;
-       this.emdCorCarro = emdCorCarro;
-       this.emdFormaPagamento = emdFormaPagamento;
-       this.emdModelo = emdModelo;
-       this.emdMarca = emdMarca;
-       this.emdVendaProdutos = emdVendaProdutos;
-    }
+   
    
      @Id 
 
@@ -157,14 +145,6 @@ public class EmdVenda  implements java.io.Serializable {
         this.emdMarca = emdMarca;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdVenda")
-    public Set getEmdVendaProdutos() {
-        return this.emdVendaProdutos;
-    }
-    
-    public void setEmdVendaProdutos(Set emdVendaProdutos) {
-        this.emdVendaProdutos = emdVendaProdutos;
-    }
 
 
 
