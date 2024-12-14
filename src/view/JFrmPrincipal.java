@@ -30,10 +30,10 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMnuCadastro = new javax.swing.JMenu();
-        jMnuAvaliacao = new javax.swing.JMenuItem();
         jMnuCategoria = new javax.swing.JMenuItem();
         jMnuCliente = new javax.swing.JMenuItem();
         jMnuFornecedor = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMnuProduto = new javax.swing.JMenuItem();
         jMnuUsuarios = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -47,15 +47,6 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMnuCadastro.setMnemonic('C');
         jMnuCadastro.setText("Cadastros");
-
-        jMnuAvaliacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuAvaliacao.setText("Avaliação");
-        jMnuAvaliacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnuAvaliacaoActionPerformed(evt);
-            }
-        });
-        jMnuCadastro.add(jMnuAvaliacao);
 
         jMnuCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMnuCategoria.setText("Categoria");
@@ -83,6 +74,10 @@ public class JFrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMnuCadastro.add(jMnuFornecedor);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Vendedor");
+        jMnuCadastro.add(jMenuItem3);
 
         jMnuProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMnuProduto.setText("Produto");
@@ -168,12 +163,6 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         jDlgCliente.setVisible(true);
     }//GEN-LAST:event_jMnuClienteActionPerformed
 
-    private void jMnuAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuAvaliacaoActionPerformed
-        // TODO add your handling code here:
-        JDlgAvaliacaoProduto jDlgAvaliacaoProduto = new JDlgAvaliacaoProduto(null, true);
-        jDlgAvaliacaoProduto.setVisible(true);
-    }//GEN-LAST:event_jMnuAvaliacaoActionPerformed
-
     private void jMnuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuFornecedorActionPerformed
         // TODO add your handling code here:
         JDlgFornecedor jDlgFornecedor = new JDlgFornecedor(null, true);
@@ -237,7 +226,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMnuAvaliacao;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jMnuCadastro;
     private javax.swing.JMenuItem jMnuCategoria;
     private javax.swing.JMenuItem jMnuCliente;

@@ -1,5 +1,5 @@
 package bean;
-// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
+// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,14 +31,16 @@ public class EmdProduto  implements java.io.Serializable {
      private String emdCor;
      private String emdModelo;
      private String emdImagemPrincipal;
-    
+     private Set vendaProdutos = new HashSet(0);
+     private Set compraProdutos = new HashSet(0);
 
     public EmdProduto() {
     }
 
 	
-    public EmdProduto(int emdIdProduto, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal) {
+    public EmdProduto(int emdIdProduto, EmdCategoria emdCategoria, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal) {
         this.emdIdProduto = emdIdProduto;
+        this.emdCategoria = emdCategoria;
         this.emdNome = emdNome;
         this.emdPreco = emdPreco;
         this.emdDescricao = emdDescricao;
@@ -46,7 +48,7 @@ public class EmdProduto  implements java.io.Serializable {
         this.emdModelo = emdModelo;
         this.emdImagemPrincipal = emdImagemPrincipal;
     }
-    public EmdProduto(int emdIdProduto, EmdCategoria emdCategoria, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal) {
+    public EmdProduto(int emdIdProduto, EmdCategoria emdCategoria, String emdNome, long emdPreco, String emdDescricao, String emdCor, String emdModelo, String emdImagemPrincipal, Set vendaProdutos, Set compraProdutos) {
        this.emdIdProduto = emdIdProduto;
        this.emdCategoria = emdCategoria;
        this.emdNome = emdNome;
@@ -55,7 +57,9 @@ public class EmdProduto  implements java.io.Serializable {
        this.emdCor = emdCor;
        this.emdModelo = emdModelo;
        this.emdImagemPrincipal = emdImagemPrincipal;
-           }
+       this.vendaProdutos = vendaProdutos;
+       this.compraProdutos = compraProdutos;
+    }
    
      @Id 
 
@@ -70,7 +74,7 @@ public class EmdProduto  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="categoria_emd_id_categoria")
+    @JoinColumn(name="emd_categoria_emd_id_categoria", nullable=false)
     public EmdCategoria getEmdCategoria() {
         return this.emdCategoria;
     }
@@ -139,6 +143,23 @@ public class EmdProduto  implements java.io.Serializable {
         this.emdImagemPrincipal = emdImagemPrincipal;
     }
 
+@OneToMany(fetch=FetchType.LAZY, mappedBy="emdProduto")
+    public Set getVendaProdutos() {
+        return this.vendaProdutos;
+    }
+    
+    public void setVendaProdutos(Set vendaProdutos) {
+        this.vendaProdutos = vendaProdutos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="emdProduto")
+    public Set getCompraProdutos() {
+        return this.compraProdutos;
+    }
+    
+    public void setCompraProdutos(Set compraProdutos) {
+        this.compraProdutos = compraProdutos;
+    }
 
 
 

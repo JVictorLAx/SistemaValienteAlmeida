@@ -1,5 +1,5 @@
 package bean;
-// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
+// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,12 +26,12 @@ import javax.persistence.TemporalType;
 public class EmdCliente  implements java.io.Serializable {
 
 
-     private int emdIdCliente;
+     private Integer emdIdCliente;
      private String emdNome;
      private String emdSobrenome;
      private String emdEmail;
      private String emdTelefone;
-     private String emdEndereco;
+     private String emdBairro;
      private String emdCidade;
      private String emdEstado;
      private String emdCep;
@@ -39,30 +39,30 @@ public class EmdCliente  implements java.io.Serializable {
      private Date emdDataNascimento;
      private String emdGenero;
      private String emdProfissao;
-     private String emdModeloCarroP;
-     private String emdMarcaCarroP;
-     
+     private String emdRua;
+     private String emdNumero;
+     private Set emdVendas = new HashSet(0);
 
     public EmdCliente() {
     }
 
 	
-    public EmdCliente(String emdNome, String emdEmail, String emdTelefone, String emdEndereco, String emdCidade, String emdEstado, String emdCep, String emdPais) {
+    public EmdCliente(String emdNome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais) {
         this.emdNome = emdNome;
         this.emdEmail = emdEmail;
         this.emdTelefone = emdTelefone;
-        this.emdEndereco = emdEndereco;
+        this.emdBairro = emdBairro;
         this.emdCidade = emdCidade;
         this.emdEstado = emdEstado;
         this.emdCep = emdCep;
         this.emdPais = emdPais;
     }
-    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdEndereco, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdModeloCarroP, String emdMarcaCarroP) {
+    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdRua, String emdNumero, Set emdVendas) {
        this.emdNome = emdNome;
        this.emdSobrenome = emdSobrenome;
        this.emdEmail = emdEmail;
        this.emdTelefone = emdTelefone;
-       this.emdEndereco = emdEndereco;
+       this.emdBairro = emdBairro;
        this.emdCidade = emdCidade;
        this.emdEstado = emdEstado;
        this.emdCep = emdCep;
@@ -70,9 +70,9 @@ public class EmdCliente  implements java.io.Serializable {
        this.emdDataNascimento = emdDataNascimento;
        this.emdGenero = emdGenero;
        this.emdProfissao = emdProfissao;
-       this.emdModeloCarroP = emdModeloCarroP;
-       this.emdMarcaCarroP = emdMarcaCarroP;
- 
+       this.emdRua = emdRua;
+       this.emdNumero = emdNumero;
+       this.emdVendas = emdVendas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -128,13 +128,13 @@ public class EmdCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="emd_endereco", nullable=false, length=200)
-    public String getEmdEndereco() {
-        return this.emdEndereco;
+    @Column(name="emd_bairro", nullable=false, length=200)
+    public String getEmdBairro() {
+        return this.emdBairro;
     }
     
-    public void setEmdEndereco(String emdEndereco) {
-        this.emdEndereco = emdEndereco;
+    public void setEmdBairro(String emdBairro) {
+        this.emdBairro = emdBairro;
     }
 
     
@@ -208,23 +208,32 @@ public class EmdCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="emd_modelo_carro_p", length=50)
-    public String getEmdModeloCarroP() {
-        return this.emdModeloCarroP;
+    @Column(name="emd_rua", length=45)
+    public String getEmdRua() {
+        return this.emdRua;
     }
     
-    public void setEmdModeloCarroP(String emdModeloCarroP) {
-        this.emdModeloCarroP = emdModeloCarroP;
+    public void setEmdRua(String emdRua) {
+        this.emdRua = emdRua;
     }
 
     
-    @Column(name="emd_marca_carro_p", length=50)
-    public String getEmdMarcaCarroP() {
-        return this.emdMarcaCarroP;
+    @Column(name="emd_numero", length=45)
+    public String getEmdNumero() {
+        return this.emdNumero;
     }
     
-    public void setEmdMarcaCarroP(String emdMarcaCarroP) {
-        this.emdMarcaCarroP = emdMarcaCarroP;
+    public void setEmdNumero(String emdNumero) {
+        this.emdNumero = emdNumero;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="emdCliente")
+    public Set getEmdVendas() {
+        return this.emdVendas;
+    }
+    
+    public void setEmdVendas(Set emdVendas) {
+        this.emdVendas = emdVendas;
     }
 
 

@@ -41,14 +41,14 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_joao_almeida"/>
-  <table-filter match-name="emd_venda_produto"/>
-  <table-filter match-name="jvl_compra"/>
-  <table-filter match-name="jvl_usuario"/>
-  <table-filter match-name="emd_cliente"/>
-  <table-filter match-name="jvl_compra_produto"/>
-  <table-filter match-name="emd_categoria"/>
   <table-filter match-name="emd_produto"/>
+  <table-filter match-name="emd_categoria"/>
+  <table-filter match-name="venda_produto"/>
+  <table-filter match-name="emd_cliente"/>
   <table-filter match-name="emd_venda"/>
+  <table-filter match-name="jvl_usuarios"/>
+  <table-filter match-name="jvl_compra"/>
+  <table-filter match-name="jvl_vendedor"/>
   <table-filter match-name="jvl_fornecedor"/>
-  <table-filter match-name="jvl_avaliacao_produto"/>
+  <table-filter match-name="compra_produto"/>
 </hibernate-reverse-engineering>

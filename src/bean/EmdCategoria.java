@@ -1,5 +1,5 @@
 package bean;
-// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
+// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,13 +26,14 @@ import javax.persistence.TemporalType;
 public class EmdCategoria  implements java.io.Serializable {
 
 
-     private int emdIdCategoria;
+     private Integer emdIdCategoria;
      private String emdNomeCategoria;
      private String emdDescricao;
      private int emdVeiculosDisponiveis;
      private String emdTipoMotor;
      private String emdTurbo;
      private Date emdDataCriacao;
+     private Set emdProdutos = new HashSet(0);
 
     public EmdCategoria() {
     }
@@ -45,13 +46,14 @@ public class EmdCategoria  implements java.io.Serializable {
         this.emdTipoMotor = emdTipoMotor;
         this.emdTurbo = emdTurbo;
     }
-    public EmdCategoria(String emdNomeCategoria, String emdDescricao, int emdVeiculosDisponiveis, String emdTipoMotor, String emdTurbo, Date emdDataCriacao) {
+    public EmdCategoria(String emdNomeCategoria, String emdDescricao, int emdVeiculosDisponiveis, String emdTipoMotor, String emdTurbo, Date emdDataCriacao, Set emdProdutos) {
        this.emdNomeCategoria = emdNomeCategoria;
        this.emdDescricao = emdDescricao;
        this.emdVeiculosDisponiveis = emdVeiculosDisponiveis;
        this.emdTipoMotor = emdTipoMotor;
        this.emdTurbo = emdTurbo;
        this.emdDataCriacao = emdDataCriacao;
+       this.emdProdutos = emdProdutos;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -126,6 +128,14 @@ public class EmdCategoria  implements java.io.Serializable {
         this.emdDataCriacao = emdDataCriacao;
     }
 
+@OneToMany(fetch=FetchType.LAZY, mappedBy="emdCategoria")
+    public Set getEmdProdutos() {
+        return this.emdProdutos;
+    }
+    
+    public void setEmdProdutos(Set emdProdutos) {
+        this.emdProdutos = emdProdutos;
+    }
 
 
 

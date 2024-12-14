@@ -1,5 +1,5 @@
 package bean;
-// Generated 09/12/2024 16:12:03 by Hibernate Tools 4.3.1
+// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,31 +27,31 @@ public class EmdVenda  implements java.io.Serializable {
 
 
      private int emdIdVenda;
-     private JvlAvaliacaoProduto jvlAvaliacaoProduto;
-     private JvlUsuario jvlUsuario;
+     private EmdCliente emdCliente;
+     private JvlVendedor jvlVendedor;
      private Date emdDataVenda;
      private long emdPreco;
-     private String emdCorCarro;
-     private String emdFormaPagamento;
-     private String emdModelo;
-     private String emdMarca;
+     private Set vendaProdutos = new HashSet(0);
 
     public EmdVenda() {
     }
 
 	
-    public EmdVenda(int emdIdVenda, JvlAvaliacaoProduto jvlAvaliacaoProduto, JvlUsuario jvlUsuario, Date emdDataVenda, long emdPreco, String emdCorCarro, String emdFormaPagamento, String emdModelo, String emdMarca) {
+    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, Date emdDataVenda, long emdPreco) {
         this.emdIdVenda = emdIdVenda;
-        this.jvlAvaliacaoProduto = jvlAvaliacaoProduto;
-        this.jvlUsuario = jvlUsuario;
+        this.emdCliente = emdCliente;
+        this.jvlVendedor = jvlVendedor;
         this.emdDataVenda = emdDataVenda;
         this.emdPreco = emdPreco;
-        this.emdCorCarro = emdCorCarro;
-        this.emdFormaPagamento = emdFormaPagamento;
-        this.emdModelo = emdModelo;
-        this.emdMarca = emdMarca;
     }
-   
+    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, Date emdDataVenda, long emdPreco, Set vendaProdutos) {
+       this.emdIdVenda = emdIdVenda;
+       this.emdCliente = emdCliente;
+       this.jvlVendedor = jvlVendedor;
+       this.emdDataVenda = emdDataVenda;
+       this.emdPreco = emdPreco;
+       this.vendaProdutos = vendaProdutos;
+    }
    
      @Id 
 
@@ -66,23 +66,23 @@ public class EmdVenda  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="jvl_avaliacao_produto_jvl_id_avaliacao_produto", nullable=false)
-    public JvlAvaliacaoProduto getJvlAvaliacaoProduto() {
-        return this.jvlAvaliacaoProduto;
+    @JoinColumn(name="fk_cliente", nullable=false)
+    public EmdCliente getEmdCliente() {
+        return this.emdCliente;
     }
     
-    public void setJvlAvaliacaoProduto(JvlAvaliacaoProduto jvlAvaliacaoProduto) {
-        this.jvlAvaliacaoProduto = jvlAvaliacaoProduto;
+    public void setEmdCliente(EmdCliente emdCliente) {
+        this.emdCliente = emdCliente;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="usuario_jvl_id_usuario", nullable=false)
-    public JvlUsuario getJvlUsuario() {
-        return this.jvlUsuario;
+    @JoinColumn(name="fk_vendedor", nullable=false)
+    public JvlVendedor getJvlVendedor() {
+        return this.jvlVendedor;
     }
     
-    public void setJvlUsuario(JvlUsuario jvlUsuario) {
-        this.jvlUsuario = jvlUsuario;
+    public void setJvlVendedor(JvlVendedor jvlVendedor) {
+        this.jvlVendedor = jvlVendedor;
     }
 
     @Temporal(TemporalType.DATE)
@@ -105,46 +105,14 @@ public class EmdVenda  implements java.io.Serializable {
         this.emdPreco = emdPreco;
     }
 
-    
-    @Column(name="emd_cor_carro", nullable=false, length=30)
-    public String getEmdCorCarro() {
-        return this.emdCorCarro;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="emdVenda")
+    public Set getVendaProdutos() {
+        return this.vendaProdutos;
     }
     
-    public void setEmdCorCarro(String emdCorCarro) {
-        this.emdCorCarro = emdCorCarro;
+    public void setVendaProdutos(Set vendaProdutos) {
+        this.vendaProdutos = vendaProdutos;
     }
-
-    
-    @Column(name="emd_forma_pagamento", nullable=false, length=20)
-    public String getEmdFormaPagamento() {
-        return this.emdFormaPagamento;
-    }
-    
-    public void setEmdFormaPagamento(String emdFormaPagamento) {
-        this.emdFormaPagamento = emdFormaPagamento;
-    }
-
-    
-    @Column(name="emd_modelo", nullable=false, length=45)
-    public String getEmdModelo() {
-        return this.emdModelo;
-    }
-    
-    public void setEmdModelo(String emdModelo) {
-        this.emdModelo = emdModelo;
-    }
-
-    
-    @Column(name="emd_marca", nullable=false, length=45)
-    public String getEmdMarca() {
-        return this.emdMarca;
-    }
-    
-    public void setEmdMarca(String emdMarca) {
-        this.emdMarca = emdMarca;
-    }
-
 
 
 

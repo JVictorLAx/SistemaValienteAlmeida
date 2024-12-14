@@ -46,14 +46,13 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_joao_almeida?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <mapping class="bean.EmdProduto"/>
-    <mapping class="bean.JvlUsuario"/>
-    <mapping class="bean.JvlCompraProduto"/>
-    <mapping class="bean.JvlFornecedor"/>
-    <mapping class="bean.EmdVendaProdutoId"/>
     <mapping class="bean.EmdVenda"/>
-    <mapping class="bean.EmdVendaProduto"/>
+    <mapping class="bean.JvlVendedor"/>
+    <mapping class="bean.CompraProduto"/>
+    <mapping class="bean.JvlFornecedor"/>
+    <mapping class="bean.JvlUsuarios"/>
     <mapping class="bean.EmdCategoria"/>
-    <mapping class="bean.JvlAvaliacaoProduto"/>
+    <mapping class="bean.VendaProduto"/>
     <mapping class="bean.JvlCompra"/>
     <mapping class="bean.EmdCliente"/>
   </session-factory>
