@@ -1,5 +1,5 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class JvlFornecedor  implements java.io.Serializable {
 
 
-     private Integer jvlIdFornecedor;
+     private int jvlIdFornecedor;
      private String jvlRazaoSocial;
      private String jvlCnpj;
      private String jvlEmail;
@@ -41,7 +41,6 @@ public class JvlFornecedor  implements java.io.Serializable {
      private String jvlDescricao;
      private String jvlProdutoServicos;
      private String jvlNome;
-     private Set jvlCompras = new HashSet(0);
 
     public JvlFornecedor() {
     }
@@ -62,7 +61,7 @@ public class JvlFornecedor  implements java.io.Serializable {
         this.jvlProdutoServicos = jvlProdutoServicos;
         this.jvlNome = jvlNome;
     }
-    public JvlFornecedor(String jvlRazaoSocial, String jvlCnpj, String jvlEmail, String jvlTelefone, String jvlEndereco, String jvlCidade, String jvlEstado, String jvlCep, String jvlPais, Date jvlDataCadastro, String jvlCategoria, String jvlDescricao, String jvlProdutoServicos, String jvlNome, Set jvlCompras) {
+    public JvlFornecedor(String jvlRazaoSocial, String jvlCnpj, String jvlEmail, String jvlTelefone, String jvlEndereco, String jvlCidade, String jvlEstado, String jvlCep, String jvlPais, Date jvlDataCadastro, String jvlCategoria, String jvlDescricao, String jvlProdutoServicos, String jvlNome) {
        this.jvlRazaoSocial = jvlRazaoSocial;
        this.jvlCnpj = jvlCnpj;
        this.jvlEmail = jvlEmail;
@@ -77,18 +76,17 @@ public class JvlFornecedor  implements java.io.Serializable {
        this.jvlDescricao = jvlDescricao;
        this.jvlProdutoServicos = jvlProdutoServicos;
        this.jvlNome = jvlNome;
-       this.jvlCompras = jvlCompras;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="jvl_id_fornecedor", unique=true, nullable=false)
-    public Integer getJvlIdFornecedor() {
+    public int getJvlIdFornecedor() {
         return this.jvlIdFornecedor;
     }
     
-    public void setJvlIdFornecedor(Integer jvlIdFornecedor) {
+    public void setJvlIdFornecedor(int jvlIdFornecedor) {
         this.jvlIdFornecedor = jvlIdFornecedor;
     }
 
@@ -230,15 +228,6 @@ public class JvlFornecedor  implements java.io.Serializable {
     
     public void setJvlNome(String jvlNome) {
         this.jvlNome = jvlNome;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlFornecedor")
-    public Set getJvlCompras() {
-        return this.jvlCompras;
-    }
-    
-    public void setJvlCompras(Set jvlCompras) {
-        this.jvlCompras = jvlCompras;
     }
 
 

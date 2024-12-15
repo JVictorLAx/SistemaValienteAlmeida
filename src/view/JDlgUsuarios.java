@@ -6,6 +6,8 @@ package view;
 
 //import bean.Emd_usuario;
 //import dao.Emd_usuarioDAO;
+import bean.JvlUsuarios;
+import dao.Jvl_UsuarioDAO;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,13 +28,11 @@ public class JDlgUsuarios extends javax.swing.JDialog {
      */
     private MaskFormatter mascaraCPF, mascaraData;
 
-
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro");
-        setLocationRelativeTo(null); 
-       
+        setTitle("Usuário");
+        setLocationRelativeTo(null);
 
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
                 jFmtDataN, jPwfSenha, jCboNivel, jBtnCancelar, jBtnConfim);
@@ -46,8 +46,43 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         jFmtCPF.setFormatterFactory(new DefaultFormatterFactory(mascaraCPF));
         jFmtDataN.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
+    boolean incluindo;
 
+    public JvlUsuarios viewBean() {
+        JvlUsuarios jvlUsuarios = new JvlUsuarios();
 
+        jvlUsuarios.setJvlIdUsuarios(Util.srToInt(jTxtCodigo.getText()));
+        jvlUsuarios.setJvlNome(jTxtNome.getText());
+        jvlUsuarios.setJvlApelido(jtxtAp.getText());
+        jvlUsuarios.setJvlCpf(jFmtCPF.getText());
+        jvlUsuarios.setJvlNivel(jCboNivel.getSelectedIndex());
+        jvlUsuarios.setJvlSenha(jPwfSenha.getText());
+        jvlUsuarios.setJvlNascimento(null);
+        if (jChBAtivo.isSelected() == true) {
+            jvlUsuarios.setJvlAtivo("S");
+        } else {
+            jvlUsuarios.setJvlAtivo("N");
+        }
+
+        return jvlUsuarios;
+    }
+
+    public JvlUsuarios beanView(JvlUsuarios jvlUsuarios) {
+        jTxtCodigo.setText(Util.intToStg(jvlUsuarios.getJvlIdUsuarios()));
+        jTxtNome.setText(jvlUsuarios.getJvlNome());
+        jtxtAp.setText(jvlUsuarios.getJvlApelido());
+        jFmtCPF.setText(jvlUsuarios.getJvlCpf());
+        jCboNivel.setSelectedIndex((jvlUsuarios.getJvlNivel()));
+        jPwfSenha.setText(jvlUsuarios.getJvlSenha());
+        jFmtDataN.setText(null);
+
+        if (jvlUsuarios.getJvlAtivo().equals("S")) {
+            jChBAtivo.setSelected(true);
+        } else {
+            jChBAtivo.setSelected(false);
+        }
+        return jvlUsuarios;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -305,7 +340,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-        
+
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
                 jFmtDataN, jPwfSenha, jCboNivel, jBtnCancelar, jBtnConfim);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
@@ -314,9 +349,9 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
+        incluindo = true;
         // TODO add your handling code here:
 
-       
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
                 jFmtDataN, jPwfSenha, jBtnConfim, jBtnAlterar, jBtnIncluir, jBtnPesquisar, jBtnExcluir);
         Util.habilitar(true, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
@@ -329,7 +364,15 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnConfimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfimActionPerformed
         // TODO add your handling code here:
-
+        JvlUsuarios jvlUsuario = viewBean();
+        Jvl_UsuarioDAO jvl_UsuarioDAO = new Jvl_UsuarioDAO();
+        if (incluindo == true) {
+            jvl_UsuarioDAO.insert(jvlUsuario);
+            Util.mostrar("Usuário salvo com sucesso !");
+        }else if(incluindo == false){
+        jvl_UsuarioDAO.update(jvlUsuario);
+        Util.mostrar("Te Alterado com Sucesso !");
+        }
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
                 jFmtDataN, jPwfSenha, jCboNivel, jBtnCancelar, jBtnConfim);
         Util.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir, jBtnPesquisar);
@@ -339,28 +382,34 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
- 
- int resp = JOptionPane.showConfirmDialog(null, "Confirmar Exclusão !", "Deletar registro", JOptionPane.YES_NO_OPTION);
-         JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
-
-        if (resp == JOptionPane.YES_OPTION) {}
+        if (Util.perguntar("você deseja excluir?")) {
+            Jvl_UsuarioDAO jvl_UsuarioDAO = new Jvl_UsuarioDAO();
+            jvl_UsuarioDAO.delete(viewBean());
+            Util.mostrar("Exclusao realizada");
+            Util.limpar(jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
+                    jFmtDataN, jPwfSenha, jCboNivel);
+        } else {
+            Util.mostrar("exclusao cancelada");
+        }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
- 
-
 
         JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
+        jDlgUsuariosPesquisar.setTelaAnterior(this);
         jDlgUsuariosPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-         
+         incluindo = false;
 
-
+          Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
+                jFmtDataN, jPwfSenha, jBtnConfim, jBtnAlterar, jBtnIncluir, jBtnPesquisar, jBtnExcluir);
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,
+                jFmtDataN, jPwfSenha, jCboNivel, jBtnCancelar, jBtnConfim);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jCboNivelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jCboNivelComponentHidden

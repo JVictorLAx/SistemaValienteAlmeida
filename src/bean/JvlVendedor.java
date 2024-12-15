@@ -1,8 +1,7 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -27,9 +26,8 @@ public class JvlVendedor  implements java.io.Serializable {
      private String jvlTelefone;
      private String jvlCpf;
      private int jvlGenero;
-     private BigDecimal jvlSalario;
+     private double jvlSalario;
      private String jvlEmail;
-     private Set emdVendas = new HashSet(0);
 
     public JvlVendedor() {
     }
@@ -41,7 +39,7 @@ public class JvlVendedor  implements java.io.Serializable {
         this.jvlCpf = jvlCpf;
         this.jvlGenero = jvlGenero;
     }
-    public JvlVendedor(int jvlIdVendedor, String jvlNome, String jvlTelefone, String jvlCpf, int jvlGenero, BigDecimal jvlSalario, String jvlEmail, Set emdVendas) {
+    public JvlVendedor(int jvlIdVendedor, String jvlNome, String jvlTelefone, String jvlCpf, int jvlGenero, double jvlSalario, String jvlEmail) {
        this.jvlIdVendedor = jvlIdVendedor;
        this.jvlNome = jvlNome;
        this.jvlTelefone = jvlTelefone;
@@ -49,7 +47,6 @@ public class JvlVendedor  implements java.io.Serializable {
        this.jvlGenero = jvlGenero;
        this.jvlSalario = jvlSalario;
        this.jvlEmail = jvlEmail;
-       this.emdVendas = emdVendas;
     }
    
      @Id 
@@ -106,11 +103,11 @@ public class JvlVendedor  implements java.io.Serializable {
 
     
     @Column(name="jvl_salario", precision=7)
-    public BigDecimal getJvlSalario() {
+    public double getJvlSalario() {
         return this.jvlSalario;
     }
     
-    public void setJvlSalario(BigDecimal jvlSalario) {
+    public void setJvlSalario(double jvlSalario) {
         this.jvlSalario = jvlSalario;
     }
 
@@ -123,17 +120,6 @@ public class JvlVendedor  implements java.io.Serializable {
     public void setJvlEmail(String jvlEmail) {
         this.jvlEmail = jvlEmail;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlVendedor")
-    public Set getEmdVendas() {
-        return this.emdVendas;
-    }
-    
-    public void setEmdVendas(Set emdVendas) {
-        this.emdVendas = emdVendas;
-    }
-
-
 
 
 }

@@ -1,5 +1,5 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,7 +31,6 @@ public class EmdVenda  implements java.io.Serializable {
      private JvlVendedor jvlVendedor;
      private Date emdDataVenda;
      private long emdPreco;
-     private Set vendaProdutos = new HashSet(0);
 
     public EmdVenda() {
     }
@@ -44,14 +43,7 @@ public class EmdVenda  implements java.io.Serializable {
         this.emdDataVenda = emdDataVenda;
         this.emdPreco = emdPreco;
     }
-    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, Date emdDataVenda, long emdPreco, Set vendaProdutos) {
-       this.emdIdVenda = emdIdVenda;
-       this.emdCliente = emdCliente;
-       this.jvlVendedor = jvlVendedor;
-       this.emdDataVenda = emdDataVenda;
-       this.emdPreco = emdPreco;
-       this.vendaProdutos = vendaProdutos;
-    }
+   
    
      @Id 
 
@@ -104,16 +96,6 @@ public class EmdVenda  implements java.io.Serializable {
     public void setEmdPreco(long emdPreco) {
         this.emdPreco = emdPreco;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdVenda")
-    public Set getVendaProdutos() {
-        return this.vendaProdutos;
-    }
-    
-    public void setVendaProdutos(Set vendaProdutos) {
-        this.vendaProdutos = vendaProdutos;
-    }
-
 
 
 

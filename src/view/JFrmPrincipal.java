@@ -183,7 +183,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JDlgPedidos jDlgPedidos = new JDlgPedidos(null, true);
+        JDlgCompra jDlgPedidos = new JDlgCompra(null, true);
         jDlgPedidos.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

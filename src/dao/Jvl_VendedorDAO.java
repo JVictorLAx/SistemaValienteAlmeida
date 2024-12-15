@@ -5,18 +5,17 @@
  */
 package dao;
 
-import bean.JvlAvaliacaoProduto;
+import bean.JvlVendedor;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import static org.hibernate.criterion.Projections.id;
 import org.hibernate.criterion.Restrictions;
 
-
 /**
  *
  * @author u06296329105
  */
-public class Jvl_avaliacao_produtoDAO extends DAO_Abstract {
+public class Jvl_VendedorDAO extends DAO_Abstract {
 
     @Override
     public void insert(Object objeto) {
@@ -46,8 +45,8 @@ public class Jvl_avaliacao_produtoDAO extends DAO_Abstract {
     @Override
     public Object list(int id) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(JvlAvaliacaoProduto.class);
-        criteria.add( Restrictions.eq("idusuarios", id ));
+        Criteria criteria = session.createCriteria(JvlVendedor.class);
+        criteria.add(Restrictions.eq("jvl_id_vendedor", id));
         ArrayList lista = (ArrayList) criteria.list();
         session.getTransaction().commit();
         return lista;
@@ -56,7 +55,7 @@ public class Jvl_avaliacao_produtoDAO extends DAO_Abstract {
     @Override
     public ArrayList listAll() {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(JvlAvaliacaoProduto.class);
+        Criteria criteria = session.createCriteria(JvlVendedor.class);
         ArrayList lista = (ArrayList) criteria.list();
         session.getTransaction().commit();
         return lista;

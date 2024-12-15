@@ -1,5 +1,5 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -24,7 +24,7 @@ public class CompraProduto  implements java.io.Serializable {
      private int idCompraProduto;
      private EmdProduto emdProduto;
      private JvlCompra jvlCompra;
-     private BigDecimal valorUnit;
+     private double valorUnit;
      private String quantidade;
 
     public CompraProduto() {
@@ -36,7 +36,7 @@ public class CompraProduto  implements java.io.Serializable {
         this.emdProduto = emdProduto;
         this.jvlCompra = jvlCompra;
     }
-    public CompraProduto(int idCompraProduto, EmdProduto emdProduto, JvlCompra jvlCompra, BigDecimal valorUnit, String quantidade) {
+    public CompraProduto(int idCompraProduto, EmdProduto emdProduto, JvlCompra jvlCompra, double valorUnit, String quantidade) {
        this.idCompraProduto = idCompraProduto;
        this.emdProduto = emdProduto;
        this.jvlCompra = jvlCompra;
@@ -78,11 +78,11 @@ public class CompraProduto  implements java.io.Serializable {
 
     
     @Column(name="valor_unit", precision=10)
-    public BigDecimal getValorUnit() {
+    public double getValorUnit() {
         return this.valorUnit;
     }
     
-    public void setValorUnit(BigDecimal valorUnit) {
+    public void setValorUnit(double valorUnit) {
         this.valorUnit = valorUnit;
     }
 

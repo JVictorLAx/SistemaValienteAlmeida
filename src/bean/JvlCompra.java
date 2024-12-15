@@ -1,8 +1,7 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,26 +30,24 @@ public class JvlCompra  implements java.io.Serializable {
      private JvlFornecedor jvlFornecedor;
      private JvlUsuarios jvlUsuarios;
      private Date jvlDataCompra;
-     private BigDecimal jvlValorTotal;
-     private Set compraProdutos = new HashSet(0);
+     private double jvlValorTotal;
 
     public JvlCompra() {
     }
 
 	
-    public JvlCompra(int jvlIdCompra, JvlFornecedor jvlFornecedor, JvlUsuarios jvlUsuarios, BigDecimal jvlValorTotal) {
+    public JvlCompra(int jvlIdCompra, JvlFornecedor jvlFornecedor, JvlUsuarios jvlUsuarios, double jvlValorTotal) {
         this.jvlIdCompra = jvlIdCompra;
         this.jvlFornecedor = jvlFornecedor;
         this.jvlUsuarios = jvlUsuarios;
         this.jvlValorTotal = jvlValorTotal;
     }
-    public JvlCompra(int jvlIdCompra, JvlFornecedor jvlFornecedor, JvlUsuarios jvlUsuarios, Date jvlDataCompra, BigDecimal jvlValorTotal, Set compraProdutos) {
+    public JvlCompra(int jvlIdCompra, JvlFornecedor jvlFornecedor, JvlUsuarios jvlUsuarios, Date jvlDataCompra, double jvlValorTotal) {
        this.jvlIdCompra = jvlIdCompra;
        this.jvlFornecedor = jvlFornecedor;
        this.jvlUsuarios = jvlUsuarios;
        this.jvlDataCompra = jvlDataCompra;
        this.jvlValorTotal = jvlValorTotal;
-       this.compraProdutos = compraProdutos;
     }
    
      @Id 
@@ -97,23 +94,13 @@ public class JvlCompra  implements java.io.Serializable {
 
     
     @Column(name="jvl_valor_total", nullable=false, precision=10)
-    public BigDecimal getJvlValorTotal() {
+    public double getJvlValorTotal() {
         return this.jvlValorTotal;
     }
     
-    public void setJvlValorTotal(BigDecimal jvlValorTotal) {
+    public void setJvlValorTotal(double jvlValorTotal) {
         this.jvlValorTotal = jvlValorTotal;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlCompra")
-    public Set getCompraProdutos() {
-        return this.compraProdutos;
-    }
-    
-    public void setCompraProdutos(Set compraProdutos) {
-        this.compraProdutos = compraProdutos;
-    }
-
 
 
 

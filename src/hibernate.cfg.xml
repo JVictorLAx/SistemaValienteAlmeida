@@ -48,11 +48,11 @@ Contributor(s):
     <mapping class="bean.EmdProduto"/>
     <mapping class="bean.EmdVenda"/>
     <mapping class="bean.JvlVendedor"/>
+    <mapping class="bean.EmdVendaProduto"/>
     <mapping class="bean.CompraProduto"/>
     <mapping class="bean.JvlFornecedor"/>
     <mapping class="bean.JvlUsuarios"/>
     <mapping class="bean.EmdCategoria"/>
-    <mapping class="bean.VendaProduto"/>
     <mapping class="bean.JvlCompra"/>
     <mapping class="bean.EmdCliente"/>
   </session-factory>

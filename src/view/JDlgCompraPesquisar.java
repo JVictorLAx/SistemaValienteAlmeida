@@ -4,37 +4,35 @@
  */
 package view;
 
-import Controller.ControllerUsuarios;
-import bean.JvlUsuarios;
-import dao.Jvl_UsuarioDAO;
 import java.util.List;
+import Controller.ControllerCompra;
+import dao.Jvl_CompraDAO;
+import bean.JvlCompra;
+
 
 /**
  *
- * @author u08853739100
+ * @author u06296329105
  */
-public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
+public class JDlgCompraPesquisar extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
-    private JDlgUsuarios jDlgUsuarios;
-    ControllerUsuarios controllerUsuarios = new ControllerUsuarios();
-
-    public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
+    private JDlgCompra jDlgCompra;
+    ControllerCompra controllerCompra = new ControllerCompra();
+    public JDlgCompraPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-
-        Jvl_UsuarioDAO jvl_UsuarioDAO = new Jvl_UsuarioDAO();
-        List lista = jvl_UsuarioDAO.listAll();
-        controllerUsuarios.setList(lista);
-        jTable1.setModel(controllerUsuarios);
-
+      
+         Jvl_CompraDAO jvl_CompraDAO = new Jvl_CompraDAO();
+        List lista = jvl_CompraDAO.listAll();
+        controllerCompra.setList(lista);
+        jTable1.setModel(controllerCompra);
     }
-
-    public void setTelaAnterior(JDlgUsuarios jDlgUsuarios) {
-        this.jDlgUsuarios = jDlgUsuarios;
+     public void setTelaAnterior(JDlgCompra jDlgCompra) {
+        this.jDlgCompra = jDlgCompra;
     }
 
     /**
@@ -89,7 +87,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JBtnOK)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,11 +95,12 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void JBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnOKActionPerformed
         // TODO add your handling code here:
+       
         setVisible(false);
         int linha = jTable1.getSelectedRow();
 
-        JvlUsuarios jvlUsuarios = controllerUsuarios.getBean(linha);
-        jDlgUsuarios.beanView(jvlUsuarios);
+        JvlCompra jvlCompra = controllerCompra.getBean(linha);
+        jDlgCompra.beanView(jvlCompra);
     }//GEN-LAST:event_JBtnOKActionPerformed
 
     /**
@@ -121,27 +120,27 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgCompraPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgCompraPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgCompraPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgCompraPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgUsuariosPesquisar dialog = new JDlgUsuariosPesquisar(new javax.swing.JFrame(), true);
+                JDlgCompraPesquisar dialog = new JDlgCompraPesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

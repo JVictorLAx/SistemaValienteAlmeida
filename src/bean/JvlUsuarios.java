@@ -1,5 +1,5 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,7 +32,6 @@ public class JvlUsuarios  implements java.io.Serializable {
      private String jvlSenha;
      private int jvlNivel;
      private String jvlAtivo;
-     private Set jvlCompras = new HashSet(0);
 
     public JvlUsuarios() {
     }
@@ -47,7 +46,7 @@ public class JvlUsuarios  implements java.io.Serializable {
         this.jvlNivel = jvlNivel;
         this.jvlAtivo = jvlAtivo;
     }
-    public JvlUsuarios(int jvlIdUsuarios, String jvlNome, String jvlApelido, String jvlCpf, Date jvlNascimento, String jvlSenha, int jvlNivel, String jvlAtivo, Set jvlCompras) {
+    public JvlUsuarios(int jvlIdUsuarios, String jvlNome, String jvlApelido, String jvlCpf, Date jvlNascimento, String jvlSenha, int jvlNivel, String jvlAtivo) {
        this.jvlIdUsuarios = jvlIdUsuarios;
        this.jvlNome = jvlNome;
        this.jvlApelido = jvlApelido;
@@ -56,7 +55,6 @@ public class JvlUsuarios  implements java.io.Serializable {
        this.jvlSenha = jvlSenha;
        this.jvlNivel = jvlNivel;
        this.jvlAtivo = jvlAtivo;
-       this.jvlCompras = jvlCompras;
     }
    
      @Id 
@@ -140,16 +138,6 @@ public class JvlUsuarios  implements java.io.Serializable {
     public void setJvlAtivo(String jvlAtivo) {
         this.jvlAtivo = jvlAtivo;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jvlUsuarios")
-    public Set getJvlCompras() {
-        return this.jvlCompras;
-    }
-    
-    public void setJvlCompras(Set jvlCompras) {
-        this.jvlCompras = jvlCompras;
-    }
-
 
 
 

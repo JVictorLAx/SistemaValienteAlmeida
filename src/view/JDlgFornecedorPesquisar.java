@@ -4,6 +4,9 @@
  */
 package view;
 
+import Controller.ControllerFornecedor;
+import bean.JvlFornecedor;
+import dao.Jvl_FornecedorDAO;
 import java.util.List;
 
 /**
@@ -15,13 +18,25 @@ public class JDlgFornecedorPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
+    
+     private JDlgFornecedor jDlgFornecedor;
+    ControllerFornecedor controllerFornecedor = new ControllerFornecedor();
+    
     public JDlgFornecedorPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-      
+     
+             Jvl_FornecedorDAO jvl_FornecedorDAO = new Jvl_FornecedorDAO();
+        List lista = jvl_FornecedorDAO.listAll();
+        controllerFornecedor.setList(lista);
+        jTable1.setModel(controllerFornecedor);
+        
     }
 
+     public void setTelaAnterior(JDlgFornecedor jDlgFornecedor) {
+        this.jDlgFornecedor = jDlgFornecedor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +97,11 @@ public class JDlgFornecedorPesquisar extends javax.swing.JDialog {
 
     private void JBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnOKActionPerformed
         // TODO add your handling code here:
-this.dispose();
+          setVisible(false);
+        int linha = jTable1.getSelectedRow();
+
+        JvlFornecedor jvlFornecedor = controllerFornecedor.getBean(linha);
+        jDlgFornecedor.beanView(jvlFornecedor);
     }//GEN-LAST:event_JBtnOKActionPerformed
 
     /**

@@ -1,5 +1,5 @@
 package bean;
-// Generated 14/12/2024 11:25:35 by Hibernate Tools 4.3.1
+// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -41,13 +41,12 @@ public class EmdCliente  implements java.io.Serializable {
      private String emdProfissao;
      private String emdRua;
      private String emdNumero;
-     private Set emdVendas = new HashSet(0);
 
     public EmdCliente() {
     }
 
 	
-    public EmdCliente(String emdNome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais) {
+    public EmdCliente(String emdNome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais, String emdGenero) {
         this.emdNome = emdNome;
         this.emdEmail = emdEmail;
         this.emdTelefone = emdTelefone;
@@ -56,8 +55,9 @@ public class EmdCliente  implements java.io.Serializable {
         this.emdEstado = emdEstado;
         this.emdCep = emdCep;
         this.emdPais = emdPais;
+        this.emdGenero = emdGenero;
     }
-    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdRua, String emdNumero, Set emdVendas) {
+    public EmdCliente(String emdNome, String emdSobrenome, String emdEmail, String emdTelefone, String emdBairro, String emdCidade, String emdEstado, String emdCep, String emdPais, Date emdDataNascimento, String emdGenero, String emdProfissao, String emdRua, String emdNumero) {
        this.emdNome = emdNome;
        this.emdSobrenome = emdSobrenome;
        this.emdEmail = emdEmail;
@@ -72,7 +72,6 @@ public class EmdCliente  implements java.io.Serializable {
        this.emdProfissao = emdProfissao;
        this.emdRua = emdRua;
        this.emdNumero = emdNumero;
-       this.emdVendas = emdVendas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -188,7 +187,7 @@ public class EmdCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="emd_genero", length=20)
+    @Column(name="emd_genero", nullable=false, length=20)
     public String getEmdGenero() {
         return this.emdGenero;
     }
@@ -226,18 +225,6 @@ public class EmdCliente  implements java.io.Serializable {
     public void setEmdNumero(String emdNumero) {
         this.emdNumero = emdNumero;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="emdCliente")
-    public Set getEmdVendas() {
-        return this.emdVendas;
-    }
-    
-    public void setEmdVendas(Set emdVendas) {
-        this.emdVendas = emdVendas;
-    }
-
-
-
 
 }
 

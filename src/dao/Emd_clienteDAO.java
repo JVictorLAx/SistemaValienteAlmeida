@@ -47,7 +47,7 @@ public class Emd_clienteDAO extends DAO_Abstract {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(EmdCliente.class);
-        criteria.add( Restrictions.eq("idusuarios", id ));
+        criteria.add( Restrictions.eq("emdIdCliente", id ));
         ArrayList lista = (ArrayList) criteria.list();
         session.getTransaction().commit();
         return lista;

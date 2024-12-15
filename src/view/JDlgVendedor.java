@@ -5,6 +5,8 @@
  */
 package view;
 
+import bean.JvlVendedor;
+import dao.Jvl_VendedorDAO;
 import javax.swing.JOptionPane;
 import tools.Util;
 
@@ -24,6 +26,33 @@ public class JDlgVendedor extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
                 jTxtTelefone, jFmtCpf, jBtnCancelar, jBtnConfim);
+    }
+    boolean incluindo;
+
+    public JvlVendedor viewBean() {
+        JvlVendedor vendedor = new JvlVendedor();
+
+        vendedor.setJvlIdVendedor(Util.srToInt(jTxtIdvendedor.getText()));
+        vendedor.setJvlNome(jTxtNome.getText());
+        vendedor.setJvlTelefone(jTxtTelefone.getText());
+        vendedor.setJvlCpf(jFmtCpf.getText());
+        vendedor.setJvlGenero(jCboGenero.getSelectedIndex());
+        vendedor.setJvlSalario(Util.strgDouble(jTxtSalario.getText()));
+        vendedor.setJvlEmail(jTxtEmail.getText());
+
+        return vendedor;
+    }
+
+    public JvlVendedor beanView(JvlVendedor vendedor) {
+        jTxtIdvendedor.setText(Util.intToStg(vendedor.getJvlIdVendedor()));
+        jTxtNome.setText(vendedor.getJvlNome());
+        jTxtTelefone.setText(vendedor.getJvlTelefone());
+        jFmtCpf.setText(vendedor.getJvlCpf());
+        jCboGenero.setSelectedIndex((vendedor.getJvlGenero()));
+        jTxtSalario.setText(Util.DoubleString(vendedor.getJvlSalario()));
+        jTxtEmail.setText(vendedor.getJvlEmail());
+
+        return vendedor;
     }
 
     /**
@@ -94,6 +123,11 @@ public class JDlgVendedor extends javax.swing.JDialog {
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
+        jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAlterarActionPerformed(evt);
+            }
+        });
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/Excluir_1.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
@@ -231,6 +265,8 @@ public class JDlgVendedor extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
 
+        incluindo = true;
+
         Util.habilitar(true, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
                 jTxtTelefone, jFmtCpf, jBtnCancelar, jBtnConfim);
         Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jBtnIncluir);
@@ -240,17 +276,29 @@ public class JDlgVendedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling codeuhere:
+        if (Util.perguntar("você deseja excluir?")) {
+            Jvl_VendedorDAO vendedorDAO = new Jvl_VendedorDAO();
+            vendedorDAO.delete(viewBean());
+            Util.mostrar("Exclusao realizada");
 
-        int resp = JOptionPane.showConfirmDialog(null, "Confirmar Exclusão !", "Deletar registro", JOptionPane.YES_NO_OPTION);
-        JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
-
-        if (resp == JOptionPane.YES_OPTION) {
+            Util.limpar(jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
+                    jTxtTelefone, jFmtCpf);
+        } else {
+            Util.mostrar("exclusao cancelada");
         }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfimActionPerformed
+
+        if (incluindo) {
+            Jvl_VendedorDAO vendedorDAO = new Jvl_VendedorDAO();
+            vendedorDAO.insert(viewBean());
+        } else if (incluindo == false) {
+            Jvl_VendedorDAO vendedorDAO = new Jvl_VendedorDAO();
+            vendedorDAO.update(viewBean());
+        }
         // TODO add your handling code here:
         Util.habilitar(false, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
                 jTxtTelefone, jFmtCpf, jBtnCancelar, jBtnConfim);
@@ -270,9 +318,20 @@ public class JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        JDlgProdutoPesquisar jDlgProdutoPesquisar = new JDlgProdutoPesquisar(null, true);
-        jDlgProdutoPesquisar.setVisible(true);
+        JDlgVendedorPesquisar jDlgVendedorPesquisar = new JDlgVendedorPesquisar(null, true);
+        jDlgVendedorPesquisar.setTelaAnterior(this);
+        jDlgVendedorPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
+
+    private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        incluindo = false;
+
+        Util.habilitar(true, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
+                jTxtTelefone, jFmtCpf, jBtnCancelar, jBtnConfim);
+        Util.habilitar(false, jBtnAlterar, jBtnExcluir, jBtnPesquisar, jBtnIncluir);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
