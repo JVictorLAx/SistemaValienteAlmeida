@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class EmdCliente  implements java.io.Serializable {
 
 
-     private Integer emdIdCliente;
+     private int emdIdCliente;
      private String emdNome;
      private String emdSobrenome;
      private String emdEmail;
@@ -78,11 +78,11 @@ public class EmdCliente  implements java.io.Serializable {
 
     
     @Column(name="emd_id_cliente", unique=true, nullable=false)
-    public Integer getEmdIdCliente() {
+    public int getEmdIdCliente() {
         return this.emdIdCliente;
     }
     
-    public void setEmdIdCliente(Integer emdIdCliente) {
+    public void setEmdIdCliente(int emdIdCliente) {
         this.emdIdCliente = emdIdCliente;
     }
 
@@ -225,6 +225,22 @@ public class EmdCliente  implements java.io.Serializable {
     public void setEmdNumero(String emdNumero) {
         this.emdNumero = emdNumero;
     }
+
+  @Override
+    public boolean equals(Object object) {
+        if (object instanceof EmdCliente) {
+            EmdCliente emdCliente = (EmdCliente) object;
+            if (emdCliente.getEmdIdCliente()== this.getEmdIdCliente()) {
+                return true;
+            }
+        }
+        return false;
+    }
+@Override
+    public String toString() {
+        return this.emdIdCliente + " - " + this.emdNome;
+    }
+
 
 }
 

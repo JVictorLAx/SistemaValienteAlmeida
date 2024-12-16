@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -102,7 +102,7 @@ public class JvlCompra  implements java.io.Serializable {
         this.jvlValorTotal = jvlValorTotal;
     }
 
-
+   
 
 }
 

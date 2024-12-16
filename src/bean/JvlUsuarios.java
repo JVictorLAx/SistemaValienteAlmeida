@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -139,6 +139,20 @@ public class JvlUsuarios  implements java.io.Serializable {
         this.jvlAtivo = jvlAtivo;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JvlUsuarios) {
+            JvlUsuarios jvlUsuarios = (JvlUsuarios) object;
+            if (jvlUsuarios.getJvlIdUsuarios() == this.getJvlIdUsuarios()) {
+                return true;
+            }
+        }
+        return false;
+    }
+@Override
+    public String toString() {
+        return this.jvlIdUsuarios + " - " + this.jvlNome;
+    }
 
 
 }

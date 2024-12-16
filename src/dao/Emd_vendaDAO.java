@@ -47,7 +47,7 @@ public class Emd_vendaDAO extends DAO_Abstract {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(EmdVenda.class);
-        criteria.add( Restrictions.eq("idusuarios", id ));
+        criteria.add( Restrictions.eq("emdIdVenda", id ));
         ArrayList lista = (ArrayList) criteria.list();
         session.getTransaction().commit();
         return lista;

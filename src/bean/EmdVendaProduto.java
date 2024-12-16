@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -86,15 +86,6 @@ public class EmdVendaProduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="valor_unit", precision=10)
-    public double getValorUnit() {
-        return this.valorUnit;
-    }
-    
-    public void setValorUnit(double valorUnit) {
-        this.valorUnit = valorUnit;
-    }
-
 
 
 

@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -120,6 +120,23 @@ public class JvlVendedor  implements java.io.Serializable {
     public void setJvlEmail(String jvlEmail) {
         this.jvlEmail = jvlEmail;
     }
+
+
+ @Override
+    public boolean equals(Object object) {
+        if (object instanceof JvlVendedor) {
+            JvlVendedor jvlVendedor = (JvlVendedor) object;
+            if (jvlVendedor.getJvlIdVendedor()== this.getJvlIdVendedor()) {
+                return true;
+            }
+        }
+        return false;
+    }
+@Override
+    public String toString() {
+        return this.jvlIdVendedor + " - " + this.jvlNome;
+    }
+
 
 
 }

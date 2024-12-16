@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
+import dao.Emd_clienteDAO;
+import bean.EmdCliente;
+import Controller.ControllerCliente;
 import java.util.List;
 
 /**
@@ -15,11 +17,23 @@ public class JDlgClientePesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
+        private JDlgCliente jDlgCliente;
+    ControllerCliente controllerCliente = new ControllerCliente();
+
     public JDlgClientePesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
       
+        Emd_clienteDAO emd_clienteDAO = new Emd_clienteDAO();
+        List lista = emd_clienteDAO.listAll();
+        controllerCliente.setList(lista);
+        jTable1.setModel(controllerCliente);
+        
+    }
+
+    public void setTelaAnterior(JDlgCliente jDlgCliente) {
+        this.jDlgCliente = jDlgCliente;
     }
 
     /**
@@ -82,8 +96,11 @@ public class JDlgClientePesquisar extends javax.swing.JDialog {
 
     private void JBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnOKActionPerformed
         // TODO add your handling code here:
-                this.dispose();
+  setVisible(false);
+        int linha = jTable1.getSelectedRow();
 
+       EmdCliente emdCliente = controllerCliente.getBean(linha);
+        jDlgCliente.beanView(emdCliente);
     }//GEN-LAST:event_JBtnOKActionPerformed
 
     /**

@@ -6,6 +6,7 @@
 package dao;
 
 import bean.JvlCompra;
+import bean.JvlUsuarios;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import static org.hibernate.criterion.Projections.id;

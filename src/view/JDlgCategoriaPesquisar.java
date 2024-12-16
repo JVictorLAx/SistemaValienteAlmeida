@@ -4,22 +4,38 @@
  */
 package view;
 
+import Controller.ControllerCategoria;
+import bean.EmdCategoria;
+import dao.Emd_categoriaDAO;
 import java.util.List;
 
 /**
  *
- * @author u06296329105
+ * @author u08853739100
  */
 public class JDlgCategoriaPesquisar extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
+    private JDlgCategoria jDlgCategoria;
+    ControllerCategoria controllerCategoria = new ControllerCategoria();
+
     public JDlgCategoriaPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Pesquisar Categoria");
         setLocationRelativeTo(null);
-      
+
+        Emd_categoriaDAO emdCategoria = new Emd_categoriaDAO();
+        List lista = emdCategoria.listAll();
+        controllerCategoria.setList(lista);
+        jTable1.setModel(controllerCategoria);
+
+    }
+
+    public void setTelaAnterior(JDlgCategoria jDlgCategoria) {
+        this.jDlgCategoria = jDlgCategoria;
     }
 
     /**
@@ -82,7 +98,11 @@ public class JDlgCategoriaPesquisar extends javax.swing.JDialog {
 
     private void JBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnOKActionPerformed
         // TODO add your handling code here:
-                this.dispose();
+        setVisible(false);
+        int linha = jTable1.getSelectedRow();
+
+        EmdCategoria emdCategoria = controllerCategoria.getBean(linha);
+        jDlgCategoria.beanView(emdCategoria);
 
     }//GEN-LAST:event_JBtnOKActionPerformed
 

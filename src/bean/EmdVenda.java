@@ -1,7 +1,8 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,20 +31,25 @@ public class EmdVenda  implements java.io.Serializable {
      private EmdCliente emdCliente;
      private JvlVendedor jvlVendedor;
      private Date emdDataVenda;
-     private long emdPreco;
+     private double emdPreco;
 
     public EmdVenda() {
     }
 
 	
-    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, Date emdDataVenda, long emdPreco) {
+    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, double emdPreco) {
         this.emdIdVenda = emdIdVenda;
         this.emdCliente = emdCliente;
         this.jvlVendedor = jvlVendedor;
-        this.emdDataVenda = emdDataVenda;
         this.emdPreco = emdPreco;
     }
-   
+    public EmdVenda(int emdIdVenda, EmdCliente emdCliente, JvlVendedor jvlVendedor, Date emdDataVenda, double emdPreco) {
+       this.emdIdVenda = emdIdVenda;
+       this.emdCliente = emdCliente;
+       this.jvlVendedor = jvlVendedor;
+       this.emdDataVenda = emdDataVenda;
+       this.emdPreco = emdPreco;
+    }
    
      @Id 
 
@@ -78,7 +84,7 @@ public class EmdVenda  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="emd_data_venda", nullable=false, length=10)
+    @Column(name="emd_data_venda", length=10)
     public Date getEmdDataVenda() {
         return this.emdDataVenda;
     }
@@ -88,15 +94,14 @@ public class EmdVenda  implements java.io.Serializable {
     }
 
     
-    @Column(name="emd_preco", nullable=false, precision=10, scale=0)
-    public long getEmdPreco() {
+    @Column(name="emd_preco", nullable=false, precision=10)
+    public double getEmdPreco() {
         return this.emdPreco;
     }
     
-    public void setEmdPreco(long emdPreco) {
+    public void setEmdPreco(double emdPreco) {
         this.emdPreco = emdPreco;
     }
-
 
 
 }

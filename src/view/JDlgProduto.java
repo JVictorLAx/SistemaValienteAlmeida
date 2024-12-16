@@ -4,31 +4,102 @@
  */
 package view;
 
-
 import javax.swing.JOptionPane;
+import bean.EmdCategoria;
 import tools.Util;
+import bean.EmdProduto;
+import dao.Emd_categoriaDAO;
+import dao.Emd_produtoDAO;
+import java.util.ArrayList;
 
 /**
  *
- * @author u06296329105
+ * @author u08853739100
  */
 public class JDlgProduto extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgUsuarios
      */
+    boolean incluindo;
+
     public JDlgProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro");
         setLocationRelativeTo(null);
-       Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv, jBtnCancelar, jBtnConfim);
+
+        jCboCategoria.removeAllItems();
+        Emd_categoriaDAO categoriaDAO = new Emd_categoriaDAO();
+        ArrayList lista = categoriaDAO.listAll();
+        for (Object object : lista) {
+            jCboCategoria.addItem((EmdCategoria) object);
+        }
+
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jCboCategoria, jBtnCancelar, jBtnConfim);
 
     }
 
-   
+    public EmdProduto viewBean() {
+        EmdProduto emdProduto = new EmdProduto();
+
+        emdProduto.setEmdIdProduto(Util.srToInt(jTxtCodigo.getText()));
+        emdProduto.setEmdNome(jTxtNome.getText());
+        emdProduto.setEmdCor(jTxtCor.getText());
+        emdProduto.setEmdPreco(Util.strgDouble(jTxtPreco.getText()));
+        emdProduto.setEmdImagemPrincipal(jTxtURL.getText());
+        emdProduto.setEmdDescricao(jTxtDescricao.getText());
+        emdProduto.setEmdCategoria((EmdCategoria) jCboCategoria.getSelectedItem());
+
+        emdProduto.setEmdModelo(jChbEsportivo.isSelected() ? "Esportivo" : "N");
+        emdProduto.setEmdModelo(jChbPerua.isSelected() ? "Perua" : "N");
+        emdProduto.setEmdModelo(jChbPicapes.isSelected() ? "Picapes" : "N");
+        emdProduto.setEmdModelo(jChbSeda.isSelected() ? "Seda" : "N");
+        emdProduto.setEmdModelo(jChbSuv.isSelected() ? "Suv" : "N");
+
+        return emdProduto;
+    }
+
+    public EmdProduto beanView(EmdProduto emdProduto) {
+
+        jTxtCodigo.setText(Util.intToStg(emdProduto.getEmdIdProduto()));
+        jTxtNome.setText(emdProduto.getEmdNome());
+        jTxtCor.setText(emdProduto.getEmdCor());
+        jTxtPreco.setText(Util.DoubleString(emdProduto.getEmdPreco()));
+        jTxtURL.setText(emdProduto.getEmdImagemPrincipal());
+        jTxtDescricao.setText(emdProduto.getEmdDescricao());
+        jCboCategoria.setSelectedItem(emdProduto.getEmdCategoria());
+
+        if (emdProduto.getEmdModelo().equals("Esportivo")) {
+            jChbEsportivo.setSelected(true);
+        } else {
+            jChbEsportivo.setSelected(false);
+        }
+        if (emdProduto.getEmdModelo().equals("Perua")) {
+            jChbPerua.setSelected(true);
+        } else {
+            jChbPerua.setSelected(false);
+        }
+        if (emdProduto.getEmdModelo().equals("Picapes")) {
+            jChbPicapes.setSelected(true);
+        } else {
+            jChbPicapes.setSelected(false);
+        }
+        if (emdProduto.getEmdModelo().equals("Seda")) {
+            jChbSeda.setSelected(true);
+        } else {
+            jChbSeda.setSelected(false);
+        }
+        if (emdProduto.getEmdModelo().equals("Suv")) {
+            jChbSuv.setSelected(true);
+        } else {
+            jChbSuv.setSelected(false);
+        }
+
+        return emdProduto;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +136,8 @@ public class JDlgProduto extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTxtURL = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jCboCategoria = new javax.swing.JComboBox<EmdCategoria>();
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +175,11 @@ public class JDlgProduto extends javax.swing.JDialog {
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
+        jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAlterarActionPerformed(evt);
+            }
+        });
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/Excluir_1.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
@@ -184,6 +262,8 @@ public class JDlgProduto extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setText("Categoria");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +291,7 @@ public class JDlgProduto extends javax.swing.JDialog {
                                 .addComponent(jTxtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(jTxtURL, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
@@ -230,11 +310,15 @@ public class JDlgProduto extends javax.swing.JDialog {
                                     .addComponent(jBtnCancelar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jBtnPesquisar))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(505, 505, 505)))))
+                                    .addGap(31, 31, 31)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jCboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(209, 209, 209)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +334,7 @@ public class JDlgProduto extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel17)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +360,12 @@ public class JDlgProduto extends javax.swing.JDialog {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,54 +406,71 @@ public class JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv, jBtnCancelar, jBtnConfim);
-        
- Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);  
- Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv); 
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jBtnCancelar, jBtnConfim, jCboCategoria);
+
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv, jBtnCancelar, jBtnConfim);
-        
- Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);   
-Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv); 
+        incluindo = true;
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jBtnCancelar, jBtnConfim, jCboCategoria);
+
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfimActionPerformed
         // TODO add your handling code here:
-       Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv, jBtnCancelar, jBtnConfim);
-        
- Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir); 
- Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL, 
-               jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda, 
-               jChbSuv); 
+        EmdProduto emdProduto = viewBean();
+        Emd_produtoDAO emd_produtoDAO = new Emd_produtoDAO();
+        if (incluindo == true) {
+            emd_produtoDAO.insert(emdProduto);
+            Util.mostrar("Usuário salvo com sucesso !");
+        } else if (incluindo == false) {
+            emd_produtoDAO.update(emdProduto);
+            Util.mostrar("Alterado com Sucesso !");
+        }
+
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jBtnCancelar, jBtnConfim, jCboCategoria);
+
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jCboCategoria);
     }//GEN-LAST:event_jBtnConfimActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
 
-        int resp = JOptionPane.showConfirmDialog(null, "Confirmar Exclusão !", "Deletar registro", JOptionPane.YES_NO_OPTION);
-         JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
-
-        if (resp == JOptionPane.YES_OPTION) {}
-
+        if (Util.perguntar("você deseja excluir?")) {
+            Emd_produtoDAO emd_produtoDAO = new Emd_produtoDAO();
+            emd_produtoDAO.delete(viewBean());
+            Util.mostrar("Exclusao realizada");
+            Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                    jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                    jChbSuv, jCboCategoria);
+        } else {
+            Util.mostrar("exclusao cancelada");
+        }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-      JDlgProdutoPesquisar jDlgProdutoPesquisar = new JDlgProdutoPesquisar(null, true);
+        JDlgProdutoPesquisar jDlgProdutoPesquisar = new JDlgProdutoPesquisar(null, true);
+        jDlgProdutoPesquisar.setTelaAnterior(this);
         jDlgProdutoPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
@@ -387,6 +493,16 @@ Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
     private void jTxtURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtURLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtURLActionPerformed
+
+    private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        // TODO add your handling code here:
+        incluindo = false;
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
+                jTxtDescricao, jChbEsportivo, jChbPerua, jChbPicapes, jChbSeda,
+                jChbSuv, jBtnCancelar, jBtnConfim, jCboCategoria);
+
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
+    }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,6 +556,7 @@ Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
+    private javax.swing.JComboBox<EmdCategoria> jCboCategoria;
     private javax.swing.JCheckBox jChbEsportivo;
     private javax.swing.JCheckBox jChbPerua;
     private javax.swing.JCheckBox jChbPicapes;
@@ -449,6 +566,7 @@ Util.limpar(jTxtCodigo, jTxtNome, jTxtCor, jTxtPreco, jTxtURL,
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

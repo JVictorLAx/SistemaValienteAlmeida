@@ -292,12 +292,14 @@ public class JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnConfimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfimActionPerformed
 
-        if (incluindo) {
-            Jvl_VendedorDAO vendedorDAO = new Jvl_VendedorDAO();
-            vendedorDAO.insert(viewBean());
-        } else if (incluindo == false) {
-            Jvl_VendedorDAO vendedorDAO = new Jvl_VendedorDAO();
-            vendedorDAO.update(viewBean());
+         JvlVendedor jvlVendedor = viewBean();
+        Jvl_VendedorDAO jvl_VendedorDAO = new Jvl_VendedorDAO();
+        if (incluindo == true) {
+            jvl_VendedorDAO.insert(jvlVendedor);
+            Util.mostrar("Usuário salvo com sucesso !");
+        }else if(incluindo == false){
+        jvl_VendedorDAO.update(jvlVendedor);
+        Util.mostrar("Alterado com Sucesso !");
         }
         // TODO add your handling code here:
         Util.habilitar(false, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,

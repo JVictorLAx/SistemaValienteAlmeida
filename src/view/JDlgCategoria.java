@@ -6,26 +6,71 @@ package view;
 
 //import bean.Emd_categoria;
 //import dao.Emd_categoriaDAO;
+import bean.EmdCategoria;
+import dao.Emd_categoriaDAO;
 import javax.swing.JOptionPane;
 import tools.Util;
 
 /**
  *
- * @author u06296329105
+ * @author u08853739100
  */
 public class JDlgCategoria extends javax.swing.JDialog {
 
     /**
      * Creates new form JDlgUsuarios
      */
+    boolean incluindo;
     public JDlgCategoria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro");
+        setTitle("Cadastro Categoria");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao, jBtnConfim, jBtnCancelar);
 
+    }
+
+    public EmdCategoria viewBean() {
+        EmdCategoria emdCategoria = new EmdCategoria();
+
+        emdCategoria.setEmdIdCategoria(Util.srToInt(jTxtCodigo.getText()));
+        emdCategoria.setEmdNomeCategoria(jTxtNomeCategoria.getText());
+        emdCategoria.setEmdVeiculosDisponiveis(Util.srToInt(jTxtVeiculos.getText()));
+        emdCategoria.setEmdTipoMotor(jTxtTipoMotor.getText());
+        emdCategoria.setEmdDescricao(jTxtDesc.getText());
+        emdCategoria.setEmdDataCriacao(null);
+        if (jChbAspirado.isSelected() == true) {
+            emdCategoria.setEmdTurbo("Aspirado");
+        } else {
+            emdCategoria.setEmdTurbo("N");
+        }
+        if (jChbTurbo.isSelected() == true) {
+            emdCategoria.setEmdTurbo("Turbo");
+        } else {
+            emdCategoria.setEmdTurbo("N");
+        }
+        return emdCategoria;
+    }
+
+    public EmdCategoria beanView(EmdCategoria emdCategoria) {
+        jTxtCodigo.setText(Util.intToStg(emdCategoria.getEmdIdCategoria()));
+        jTxtNomeCategoria.setText(emdCategoria.getEmdNomeCategoria());
+        jTxtVeiculos.setText(Util.intToStg(emdCategoria.getEmdVeiculosDisponiveis()));
+        jTxtTipoMotor.setText(emdCategoria.getEmdTipoMotor());
+        jTxtDesc.setText(emdCategoria.getEmdDescricao());
+        
+        if (emdCategoria.getEmdTurbo().equals("Aspirado")) {
+            jChbAspirado.setSelected(true);
+        } else {
+            jChbAspirado.setSelected(false);
+        }
+        if (emdCategoria.getEmdTurbo().equals("Turbo")) {
+            jChbTurbo.setSelected(true);
+        } else {
+            jChbTurbo.setSelected(false);
+        }
+        return emdCategoria;
     }
 
     /**
@@ -86,6 +131,11 @@ public class JDlgCategoria extends javax.swing.JDialog {
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
+        jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAlterarActionPerformed(evt);
+            }
+        });
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/Excluir_1.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
@@ -156,7 +206,7 @@ public class JDlgCategoria extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 12, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jBtnIncluir))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,24 +305,32 @@ public class JDlgCategoria extends javax.swing.JDialog {
         Util.habilitar(false, jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao, jBtnConfim, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
-         Util.limpar(jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
+        Util.limpar(jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao);
 
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-
+        incluindo = true;
         Util.habilitar(true, jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao, jBtnConfim, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
-        
+
         Util.limpar(jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfimActionPerformed
-
+           EmdCategoria emdCategoria = viewBean();
+        Emd_categoriaDAO emd_categoriaDAO = new Emd_categoriaDAO();
+        if (incluindo == true) {
+            emd_categoriaDAO.insert(emdCategoria);
+            Util.mostrar("Usuário salvo com sucesso !");
+        }else if(incluindo == false){
+        emd_categoriaDAO.update(emdCategoria);
+        Util.mostrar("Alterado com Sucesso !");
+        }
         Util.habilitar(false, jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
                 jChbAspirado, jChbTurbo, jTxtDataCriacao, jBtnConfim, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
@@ -283,20 +341,22 @@ public class JDlgCategoria extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-
-        int resp = JOptionPane.showConfirmDialog(null, "Confirmar Exclusão !", "Deletar registro", JOptionPane.YES_NO_OPTION);
-
-        if (resp == JOptionPane.YES_OPTION) {
-//           
-            JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
-
+  if (Util.perguntar("você deseja excluir?")) {
+        Emd_categoriaDAO emd_categoriaDAO = new Emd_categoriaDAO();
+            emd_categoriaDAO.delete(viewBean());
+            Util.mostrar("Exclusao realizada");
+             Util.limpar(jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
+                jChbAspirado, jChbTurbo, jTxtDataCriacao);
+        } else {
+            Util.mostrar("exclusao cancelada");
         }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
-        JDlgCategoriaPesquisar jDlgCategoriaPesquisar = new JDlgCategoriaPesquisar(null, true);
+         JDlgCategoriaPesquisar jDlgCategoriaPesquisar = new JDlgCategoriaPesquisar(null, true);
+        jDlgCategoriaPesquisar.setTelaAnterior(this);
         jDlgCategoriaPesquisar.setVisible(true);
 
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
@@ -304,6 +364,16 @@ public class JDlgCategoria extends javax.swing.JDialog {
     private void jTxtTipoMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTipoMotorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTipoMotorActionPerformed
+
+    private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+        // TODO add your handling code here:
+        incluindo = false;
+        Util.habilitar(true, jTxtCodigo, jTxtNomeCategoria, jTxtVeiculos, jTxtTipoMotor, jTxtDesc,
+                jChbAspirado, jChbTurbo, jTxtDataCriacao, jBtnConfim, jBtnCancelar);
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnPesquisar, jBtnExcluir);
+        
+        
+    }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     /**
      * @param args the command line arguments

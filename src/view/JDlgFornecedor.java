@@ -466,12 +466,12 @@ public class JDlgFornecedor extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (Util.perguntar("você deseja excluir?")) {
-            Jvl_FornecedorDAO jvl_FornecedorDAO = new Jvl_FornecedorDAO();
+       if (Util.perguntar("você deseja excluir?")) {
+        Jvl_FornecedorDAO jvl_FornecedorDAO = new Jvl_FornecedorDAO();
             jvl_FornecedorDAO.delete(viewBean());
             Util.mostrar("Exclusao realizada");
-            Util.limpar(jTxtCodigo, jTxtRazao, jTxtEmail, jTxtCnpj, jTxtDataCadastro, jTxtTelefone,
-                    jTxtCEP, jTxtCidade, jTxtCodigo, jTxtEstado, jTxtPais, jTxtEndereco, jTxtDescricao, jTxtNome, jTxtProdutosServicos, jTxtCategoria);
+             Util.limpar(jTxtCodigo, jTxtRazao, jTxtEmail, jTxtCnpj, jTxtDataCadastro, jTxtTelefone,
+                jTxtCEP, jTxtCidade, jTxtCodigo, jTxtEstado, jTxtPais, jTxtEndereco, jTxtDescricao, jTxtNome, jTxtProdutosServicos, jTxtCategoria);
         } else {
             Util.mostrar("exclusao cancelada");
         }

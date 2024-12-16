@@ -1,5 +1,5 @@
 package bean;
-// Generated 15/12/2024 20:30:31 by Hibernate Tools 4.3.1
+// Generated 16/12/2024 18:34:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class EmdProduto  implements java.io.Serializable {
      private String emdCor;
      private String emdModelo;
      private String emdImagemPrincipal;
-     
+    
 
     public EmdProduto() {
     }
@@ -55,7 +55,7 @@ public class EmdProduto  implements java.io.Serializable {
        this.emdCor = emdCor;
        this.emdModelo = emdModelo;
        this.emdImagemPrincipal = emdImagemPrincipal;
-     
+
     }
    
      @Id 
@@ -139,6 +139,7 @@ public class EmdProduto  implements java.io.Serializable {
     public void setEmdImagemPrincipal(String emdImagemPrincipal) {
         this.emdImagemPrincipal = emdImagemPrincipal;
     }
+
 
 
 
