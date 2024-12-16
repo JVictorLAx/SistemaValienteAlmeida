@@ -19,7 +19,7 @@ import tools.Util;
 
 /**
  *
- * @author u08853739100
+ * @author u06296329105
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
 
@@ -31,7 +31,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Usuário");
+        setTitle("Cadastro Usuário");
         setLocationRelativeTo(null);
 
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtAp, jChBAtivo, jFmtCPF,

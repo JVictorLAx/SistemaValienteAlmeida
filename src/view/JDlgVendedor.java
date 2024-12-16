@@ -12,7 +12,7 @@ import tools.Util;
 
 /**
  *
- * @author almei
+ * @author u06296329105
  */
 public class JDlgVendedor extends javax.swing.JDialog {
 
@@ -22,7 +22,7 @@ public class JDlgVendedor extends javax.swing.JDialog {
     public JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro");
+        setTitle("Cadastro Vendedor");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtEmail, jTxtNome, jTxtIdvendedor, jTxtSalario, jCboGenero,
                 jTxtTelefone, jFmtCpf, jBtnCancelar, jBtnConfim);

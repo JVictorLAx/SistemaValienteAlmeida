@@ -16,6 +16,7 @@ public class JDlgVendaProdutos extends javax.swing.JDialog {
     public JDlgVendaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Venda Produtos");
         setLocationRelativeTo(null);
     }
 

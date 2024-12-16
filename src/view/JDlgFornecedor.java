@@ -23,7 +23,7 @@ public class JDlgFornecedor extends javax.swing.JDialog {
     public JDlgFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro");
+        setTitle("Cadastro Fornecedor");
         setLocationRelativeTo(null);
         Util.habilitar(false,
                 jTxtCodigo, jTxtRazao, jTxtEmail, jTxtCnpj, jTxtDataCadastro, jTxtTelefone,

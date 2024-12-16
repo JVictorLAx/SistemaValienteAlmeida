@@ -27,6 +27,7 @@ public class JDlgCompra extends javax.swing.JDialog {
     public JDlgCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Cadastro Compra");
         setLocationRelativeTo(null);
 
         jCboUsuarios.removeAllItems();

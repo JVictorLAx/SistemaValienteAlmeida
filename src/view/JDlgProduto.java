@@ -26,7 +26,7 @@ public class JDlgProduto extends javax.swing.JDialog {
     public JDlgProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cadastro");
+        setTitle("Cadastro Produto");
         setLocationRelativeTo(null);
 
         jCboCategoria.removeAllItems();

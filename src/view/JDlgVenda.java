@@ -17,7 +17,7 @@ import tools.Util;
 
 /**
  *
- * @author u06296329105
+ * @author u08853739100
  */
 public class JDlgVenda extends javax.swing.JDialog {
 
@@ -29,6 +29,7 @@ public class JDlgVenda extends javax.swing.JDialog {
     public JDlgVenda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Cadastro Venda");
         setLocationRelativeTo(null);
 
         jCboCliente.removeAllItems();

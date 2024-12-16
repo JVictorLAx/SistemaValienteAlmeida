@@ -14,7 +14,7 @@ import tools.Util;
 
 /**
  *
- * @author u06296329105
+ * @author u08853739100
  */
 public class JDlgCliente extends javax.swing.JDialog {
 
@@ -26,7 +26,7 @@ public class JDlgCliente extends javax.swing.JDialog {
     public JDlgCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Cliente");
+        setTitle("Cadastro Cliente");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtCodigo, jTxtNome, jtxtEmail, jTxtSobrenome, jtxtDataN,
                 jTxtTelefone, jTxtCEP, jTxtCidade, jTxtEstado, jTxtPais, jTxtProfissao,
